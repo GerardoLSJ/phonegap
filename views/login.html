@@ -1,0 +1,137 @@
+
+    <body>
+
+ 
+<!--HEADER-->     
+<ion-header-bar align-title="center" class="bar-positive">
+  <h1 class="title">CIMESA</h1>
+  
+</ion-header-bar>
+<!--HEADER-->     
+
+
+
+    
+<ion-content>
+
+    <form id="loginform">
+    <div class="list">
+    <label class="item item-input  item-stacked-label">
+    <i class="icon ion-person"></i>
+    <span class="input-label">Username</span>
+    <input type="text" name="username" placeholder="Username" value="uen63" required class="form-control">
+
+  </label>
+        <label class="item item-input  item-stacked-label">
+    <i class="icon ion-locked"></i>
+    <span class="input-label">Password</span>
+    <input type="password" name="password" placeholder="Password" value="jHAuTKv_" required class="form-control"> 
+  </label>
+    </div>
+
+
+<!--País--->
+<label class="item item-input item-select">
+    <div class="input-label">
+    <i class="icon ion-chevron-right"></i>
+      País:
+    </div>
+    <select id="country" name="paises">                                <!--REMEMBER PUT name = "something"--->
+
+    </select>
+  </label>
+
+    <div class="padding">
+        <button type="submit" class="button button-block button-balanced" >  Sign in</button>
+    </div>
+
+
+
+    </form>
+
+
+     <div class=" item item-body">
+    <img class="full-image" src="res/cimesa/logo.png">
+  </div>
+
+  <div id="results"></div>
+
+</ion-content>
+
+<div class="bar bar-footer bar-calm">
+  <div class="title">Ingrese cualquier usuario y contraseña</div>
+</div>
+
+
+<script>
+
+
+  /**
+   * 
+   * Descargamos del servidor 
+   * 
+   */
+var list = [
+  {id: 1, name:'Mexico'},
+  {id: 3, name:'USA'}
+];
+
+$.each(list, function(idx, item){
+  var option = $('<option></option>');
+  option.attr({'value': item.id, }).text(item.name);
+  $('#country').append(option);
+});
+
+
+
+  /**
+   * 
+   * Si existe un email en LocalStorage entra al dash menu
+   * 
+   */
+if(localStorage.getItem('email')){
+  window.location="#dash";
+}
+
+  /**
+   * 
+   * Login to server
+   * 
+   */
+$(function () {
+    $("#loginform").submit(function (ev) {
+        ev.preventDefault();
+        $.ajax({
+            url:'https://climaycompromiso.com.mx/gateway.php?cmd=dologin', 
+            data:$("#loginform").serialize(),
+            dataType:'json',
+            type:'POST',
+            success:function(data){
+                if(typeof data.error != "undefined"){
+                    alert(data.error);
+                }else{
+                    //alert("Bienvenido "+data.field_nombre.und[0].value);
+
+                    console.warn(data.uid);
+                    console.log(data.name);
+                    console.log(data.mail);
+
+                    localStorage.setItem("username",  data.name);
+                    localStorage.setItem("email",     data.mail);
+                    localStorage.setItem("pais",     $( "#loginform option:selected" ).text());
+                    localStorage.setItem("paisID",     $( "#loginform select" ).val());            
+                    //localStorage.setItem("lastname", "Smith");
+                    //console.warn(sessionStorage.getItem('email'))
+                    window.location="#dash";
+                }
+            }
+        })
+    })
+})
+
+
+
+
+</script>
+
+    </body>

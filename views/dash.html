@@ -1,0 +1,138 @@
+
+    <body>
+
+ 
+<!--HEADER-->     
+<ion-header-bar align-title="center" class="bar-positive">
+  <h1 class="title"></h1>
+  
+  <div class="bar bar-header bar-positive">
+    <h1 class="title">CIMESA</h1>
+ </div>
+
+</ion-header-bar>
+<!--HEADER-->     
+
+<ion-content>
+
+
+    <div class="list card">
+
+  <div class="item item-avatar">
+    <h2 id="modeloUsername">Hola, </h2>
+    <p  id="modeloEmail"></p>
+    <p  id="modeloPais"></p>
+  </div>
+
+
+</div>
+
+
+<!--row 1-->
+<div class="row">
+<div class="col col-50">
+<a href="#main" class="no-decoration">
+    <div class="card">
+        <div class="item item-body">
+
+            <i class="big icon ion-chatbox-working"></i>
+            <p>Reporte</p>
+
+        </div>
+    </div>
+</a>
+</div>
+
+<div class="col col-50">
+<a href="#main" class="no-decoration">
+    <div class="card">
+        <div class="item item-body">
+            <i class="big icon ion-paper-airplane"></i>
+          <p> Reporte tipo 1</p>
+        </div>
+    </div>
+</a>
+</div>
+
+</div>
+<!--row 1-->
+
+<!--row 2-->
+<div class="row">
+
+<div class="col col-50">
+    <a href="#main" class="no-decoration">
+    <div class="card">
+    <div class="item item-body">
+        <i class="big icon ion-bonfire"></i>
+        <p>
+            Reporte tipo 2
+        </p>
+    </div>
+    </div>
+    </a>
+</div>
+
+<div class="col col-50">
+    <a href="#main" class="no-decoration">
+    <div class="card">
+        <div class="item item-body">
+            <i class="big icon ion-bonfire"></i>
+           <p> Reporte fuego</p>
+        </div>
+    </div>
+    </a>
+</div>
+
+</div>
+<!--row 2-->
+
+<!--row 3-->
+<div class="row">
+<div class="col col-50">
+    <a href="#main" class="no-decoration">
+    <div class="card">
+        <div class="item item-text-wrap">
+            <i class="big icon ion-earth"></i>
+            <p>Reporte tipo 3</p>
+        </div>
+    </div>
+    </a>
+</div>
+<div class="col col-50">
+    <a href="#main" class="no-decoration">
+    <div class="card">
+        <div class="item item-text-wrap">
+            <i class="big icon ion-merge"></i>
+            <p>Reporte tipo 4 </p>
+        </div>
+    </div>
+    </a>
+</div>
+
+</div>
+<!--row 3-->
+
+<div class="padding">
+</div>
+
+ <div class="item item-body">
+    <img class="full-image" src="res/cimesa/logo.png">
+  </div>
+
+
+
+
+  <script>
+
+      $("#modeloUsername").append( localStorage.getItem('username'));
+      $("#modeloEmail").append( localStorage.getItem('email'));
+      $("#modeloPais").append( localStorage.getItem('pais'));
+
+      function logout(){
+          localStorage.clear();
+          window.location="#/";
+      }
+  </script>
+
+    </body>
