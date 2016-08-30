@@ -41,7 +41,8 @@ var app = {
         app.receivedEvent('deviceready');
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
-        checkConnection(); /**Check conection app = this */
+        checkConnection(); /**Check conection called from functions */
+       
 
 
 
@@ -49,12 +50,12 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-
+getDeviceDate
                 /**/
     },
 
     onErr: function(error){
-        alert('Unable to get your location. Without location you will not be able to use navigate feature! Error:' + '\n' + error.message);
+       // alert('Unable to get your location. Without location you will not be able to use navigate feature! Error:' + '\n' + error.message);
     },
 
     onSuccess: function(position){
@@ -63,6 +64,35 @@ var app = {
 };
 
 
+/**
+ * 
+ * Plain functions
+ * 
+ */
+
+
+function getDeviceDate(){   
+var dateSpan = document.getElementById('dateNow');
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1;//January is 0, so always add + 1
+
+var yyyy = today.getFullYear();
+if(dd<10){dd='0'+dd}
+if(mm<10){mm='0'+mm}
+today = mm+'/'+dd+'/'+yyyy;
+todayInput =  yyyy + '-' +mm+'-'+dd;
+dateSpan.innerHTML = today;
+
+document.getElementById('inputDate').value = todayInput;
+}
+
+
+/**
+ * Date now 
+ * plain JS
+ * 
+ */
 
     function checkConnection(){
     var networkState = navigator.connection.type;
@@ -82,75 +112,30 @@ var app = {
     }
 
     function onPhotoDataSuccess(imageData) {
-      // Get image handle
-      //
-  
       console.log("onPhotoDataSuccess: "+imageData);
 
       $('#gallery').append($('<img>',{src:"data:image/jpeg;  base64," + imageData}));
-/*
-      var smallImage = document.getElementById('smallImage');
-      // Unhide image elements
-      //
-      smallImage.style.display = 'block';
-      // Show the captured photo
-      // The inline CSS rules are used to resize the image
-      //
-      smallImage.src = "data:image/jpeg;  base64," + imageData;
-      */
     }
     
 	// Called when a photo is successfully retrieved
-    //
     function onPhotoFileSuccess(imageData) {
       // Get image handle
       console.log(JSON.stringify(imageData));
       console.log("onPhotoFileSuccess: "+imageData);
       $('#gallery').append($('<img>',{src: imageData}));
-
-      /*
-   	  // Get image handle
-      //
-      var smallImage = document.getElementById('smallImage');
-      // Unhide image elements
-      //
-      smallImage.style.display = 'block';
-      // Show the captured photo
-      // The inline CSS rules are used to resize the image
-      //
-      smallImage.src = imageData;
-      */
     }
     // Called when a photo is successfully retrieved
     //
     function onPhotoURISuccess(imageURI) {
-      // Uncomment to view the image file URI 
-      // console.log(imageURI);
-      // Get image handle
-      //
-            console.log("onPhotoURISuccess"+imageURI);
-      $('#gallery').append($('<img>',{src: imageURI}));
-      /*
-      var largeImage = document.getElementById('largeImage');
-      // Unhide image elements
-      //
-      largeImage.style.display = 'block';
-      // Show the captured photo
-      // The inline CSS rules are used to resize the image
-      //
-
-      $("#gallery").append("URRRIIII");
-      largeImage.src = imageURI;
-      */
+    console.log("onPhotoURISuccess"+imageURI);          /**ROUTE URI */
+    $('#gallery').append($('<img>',{src: imageURI}));   /**append photo */
     }
-    // A button will call this function
-    //
+
+   /***************************A button will call this function*********************  */
     function capturePhotoWithData() {
       // Take picture using device camera and retrieve image as base64-encoded string
       navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50 });
     }
-
-
 
     function capturePhotoWithFile() {
         navigator.camera.getPicture(onPhotoFileSuccess, onFail, { 
@@ -160,8 +145,8 @@ var app = {
         });
     }
     
-    // A button will call this function
-    //
+
+    /***************************A button will call this function*********************  */
     function getPhoto(source) {
       // Retrieve image file location from specified source
       navigator.camera.getPicture(onPhotoURISuccess, onFail, { 
