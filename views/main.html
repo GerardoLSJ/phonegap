@@ -197,7 +197,13 @@ function insert(){
    * 
    */
       function send(){
-        alert("Datos guardados");
+        navigator.notification.alert(
+        'Éxito',  // message
+        null,                 // callback
+        'Datos guardados',    // tittle
+        'Cerrar'            //button name
+);
+       // alert("Datos guardados");
         window.location="#dash";
       }
   /**
