@@ -1,0 +1,63 @@
+/*
+*
+*Custom CSS
+*
+*/
+
+
+/*All icons*/
+
+body {
+    display: none;
+    background-color: #000;
+}
+
+body.platform-ready {
+    display: block;
+     background-color: #fff;
+}
+
+
+@media screen and (min-height : 600px) and (max-height : 900px) {
+    i.big{
+    font-size: 80px;
+}
+}
+
+
+@media screen and (min-height : 250px) and (max-height : 599px) {
+i.big{
+    font-size: 50px;
+}
+}
+
+
+
+.center{
+  padding-top: 25vh;
+}
+
+.no-decoration{
+    text-decoration: none;
+}
+
+.ms-container {
+  width: auto;    
+}
+
+.ms-container .ms-selectable li.ms-elem-selectable, .ms-container .ms-selection li.ms-elem-selection {
+    padding: 5px 10px;
+
+}
+
+.ms-container .ms-list {
+    height: 280px;
+}
+
+#gallery img {
+    float: left;
+    max-height: 200px;
+    max-width: 200px;
+    margin: 0 0 10px 10px;
+    border: 1px solid mediumseagreen;
+}

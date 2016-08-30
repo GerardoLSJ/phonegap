@@ -1,18 +1,265 @@
-<div class="row">
-    <div style="margin-top: 120px; margin-bottom: 30px;" class="col-xs-12">
-        <img class="img-responsive" src="img/ac_logo.png" style="margin-left: auto; margin-right: auto;"/>
+
+
+<body>
+
+
+<ion-header-bar align-title="center" class="bar-positive">
+    <a href="#dash"> <button class="button button-icon icon ion-arrow-left-b"></button></a>
+    <h1 class="title">CIMESA</h1>
+</ion-header-bar>
+   
+
+
+
+<ion-content>
+
+
+<div class="item item-icon-left">
+    <i class="icon ion-calendar"></i>
+    <p>Fecha: </p><span id="dateNow"></span>
+</div>
+<div class="item item-icon-left">
+    <i class="icon ion-settings"></i>
+    <p>Nombre de la obra: </p> CIMESA Uruguay SA de CV
+</div>
+
+
+<form action="">
+
+<div class="list">
+
+<!--tipo de incidencia-->
+   <label class="item item-input item-select ">
+    <div class="input-label">
+    <i class="icon ion-chevron-right"></i>
+      Tipo de incidencia:
     </div>
+    <select id = "incidencias" name ="incidencias">
+
+    </select>
+  </label>
+
+<!--Pais-->
+     <label class="item item-input item-select ">
+    <div class="input-label">
+    <i class="icon ion-chevron-right"></i>
+      País :
+    </div>
+    <select id = "paises" name="pais">
+    
+
+    </select>
+  </label>
+
+  
+  </div>
+
+<div class="padding">
+<a class="button button-block button-balanced" onclick="capturePhotoWithFile();"><i class="icon ion-camera"></i> Tomar foto</a>
+<a class="button button-block button-balanced" onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);"><i class="icon ion-images"></i> Escoger de galeria</a>
 </div>
-<h1>arian-celina.com</h1>
-<br/>
-<div id="deviceready" class="blink" class="col-xs-12">
-    <p class="event listening">Connecting to Device</p>
-    <p class="event received">Device is Ready</p>
-    <p class="text-center"> Your location is: <br/>
-    	Latitude: {{latitude}}<br/>
-    	Longitude: {{longitude}} <br/>
-    </p>
+
+
+
+  <div class="item item-image" id="gallery" >
+   <img src="icon.png" alt="">
+   
+    <div class="item item-divider"></div>
+  </div>
+
+
+
+<div class="list">
+  <!--Descripcion--->
+    <label class="item item-input item-stacked-label">
+    <span class="input-label">Descripción:</span>
+    <textarea type="text" placeholder="Descripción" rows="5" cols="50"></textarea>   <!--REMEMBER PUT name = "something"--->
+  </label>
+  <!--fecha--->
+  <label class="item item-input item-stacked-label">
+     <i class="icon ion-information-circled"></i>
+    <span class="input-label">Fecha de compromiso:</span> 
+    <input type="date" id="inputDate" placeholder="Date"  value="">  <!--REMEMBER PUT name = "something"--->
+  </label>
+    <!--Status--->
+   <label class="item item-input item-select">
+    <div class="input-label">
+    <i class="icon ion-chevron-right"></i>
+      Status:
+    </div>
+    <select >                                <!--REMEMBER PUT name = "something"--->
+      <option>Resuelto</option>
+      <option selected>No resuelto</option>
+    </select>
+  </label>
+<!---EMAIL
+<label class="item item-input item-select">
+    <div class="input-label">
+      <i class="icon ion-email"></i>
+      Email:
+    </div>
+  <select id="email" name="email">
+
+    </select>
+  </label>
+-->
 </div>
-<div class="col-xs-12">
-	<a href="#/about" class="btn btn-default center-block" style="color:#ffff00" role="button">About</a>
+
+<div class="item item-divider"></div>
+
+<!---add email input-->
+<div class="list">
+  <div class="item item-input-inset">
+    <label class="item-input-wrapper">
+      <input type="text" placeholder="Email" name="newEmail" id="newEmail">
+    </label>
+    <button class="button button-small" type="button" onclick="insert()">
+      Submit
+    </button>
+  </div>
+
 </div>
+<!---add email input-->
+
+<!--- EMAILS-->
+<select id='optgroup' multiple='multiple'>
+    <optgroup label='Agregados' id ="agregados">
+  </optgroup>
+  <optgroup label='Recientes' id ="recientes">
+  </optgroup>
+  <optgroup label='Descargados' id ="descargados">
+  </optgroup>
+</select>
+<!--- EMAILS-->
+
+<!---EXTRA EMAILS
+<div class="list">
+   <label class="item  ">
+    <div class="">
+    <i class="icon ion-chevron-right"></i>
+      Extra email:
+    </div>
+      <ul  id="extraMail"></ul>
+  </label>
+</div>
+EXTRA EMAILS-->
+
+</form>
+
+
+
+<div class="item item-divider"></div>
+
+<button class="button button-block button-positive" onclick="send();"><i class="icon ion-plane"></i> Enviar</button>
+
+</div>
+
+
+
+
+<!--
+    <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
+    <img style="display:;" id="largeImage" src="" />
+-->
+
+</ion-content>
+
+<script src="js/jquery.multi-select.js" type="text/javascript"></script>  <!-- Multiselect JQuery -->
+
+
+    <script type="text/javascript" src="js/index.js"></script>  <!-- IMPORTANTE Poner al final de BODY porque llama a algunos TAGS que deben existir antes de correr -->
+
+<script>
+ /**
+   * 
+   * Insertamos emails extra
+   * 
+   */
+
+function insert(){
+  var input = $("#newEmail").val();
+  //console.warn(input)
+  $('#optgroup').multiSelect('addOption', { value: input, text: input, index: 0, nested: 'Agregados' });
+  $('#optgroup').multiSelect('select', input);
+  $("#newEmail").val("");
+
+}
+  /**
+   * 
+   * Enviamos los datos al servidor
+   * 
+   */
+      function send(){
+        alert("Datos guardados");
+        window.location="dash.html";
+      }
+  /**
+   * 
+   * Eliminamos fotos al hacer click
+   * 
+   */
+
+  $(document).ready(function(){
+    $('#gallery').on("click", 'img', function(e){
+      this.remove();
+    })
+    
+
+});
+
+
+
+
+
+  /**
+   * 
+   * Descargamos datos del formulario
+   * 
+   */
+      
+$.getJSON("http://192.168.100.17:3000/db.json", function(db) {
+ 
+  data = db.parent;
+ 
+ //Incidencias
+  $.each(data.incidencia, function(idx, item){
+  var option = $('<option></option>');
+  option.attr({'value': item.id, }).text(item.tipo);
+  $('#incidencias').append(option);
+});
+//Pais
+  $.each(data.pais, function(idx, item){
+  var option = $('<option></option>');
+  option.attr({'value': item.id, }).text(item.pais);
+  $('#paises').append(option);
+});
+
+
+//Recientes   DEBERMOS tomarlos del localStorage
+  $.each(data.recientes, function(idx, item){
+  var option = $('<option class="" ></option>');
+  option.attr({'value': item.id, }).text(item.email);
+  $('#recientes').append(option);
+});
+
+//Descargados
+  $.each(data.email, function(idx, item){
+  var option = $('<option class="" ></option>');
+  option.attr({'value': item.id, }).text(item.email);
+  $('#descargados').append(option);
+});
+  /**
+   * Despues de haber populado los SELECT
+   * llamaos a multiselect()
+   * para agregar su  funcionalidad
+   * Si lo llamaos antes de popular los SELECT
+   * No se mostrara nada
+   */
+ $('#email').multiSelect();
+ $('#optgroup').multiSelect();
+ 
+
+}); /*Todo esto va dentro de AJAX */
+
+</script>   
+</body>

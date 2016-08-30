@@ -1,13 +1,16 @@
-blogSample.config(['$routeProvider',
+cimesa.config(['$routeProvider',
   function($routeProvider) {
-    $routeProvider.
-      when('/', {
+    $routeProvider
+      .when('/', {
         templateUrl: 'views/login.html'
-      }).
-      when('/about', {
+      })
+      .when('/dash', {
         templateUrl: 'views/dash.html'
-      }).
-      otherwise({
+      })
+      .when('/main', {
+        templateUrl: 'views/main.html'
+      })
+      .otherwise({
         redirectTo: '/'
       });
   }]);

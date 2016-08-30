@@ -1,4 +1,4 @@
-var blogSample = angular.module('blogSample', ['ngRoute','ui.bootstrap','ionic']);
+var cimesa = angular.module('cimesa', ['ngRoute','ui.bootstrap','ionic']);
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -39,16 +39,12 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        navigator.geolocation.getCurrentPosition(app.onSuccess, app.onErr);
+                    /** */
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+                /**/
     },
 
     onErr: function(error)
@@ -58,7 +54,6 @@ var app = {
 
     onSuccess: function(position)
     {
-        blogSample.latitude = position.coords.latitude;
-        blogSample.longitude = position.coords.longitude;
+                /** */
     }
 };

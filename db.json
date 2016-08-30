@@ -1,0 +1,38 @@
+
+{
+
+
+  "parent" : {
+    "incidencia" : [
+        {"id" : 0, "tipo" : "Fuego"},
+        {"id" : 1, "tipo" : "Tierra"},
+        {"id" : 2, "tipo" : "Agua"}
+    ],
+    "pais": [
+        {"id" : 0, "pais" : "España"},
+        {"id" : 1, "pais" : "Kasakastan"},
+        {"id" : 2, "pais" : "Indonesia"}
+
+    ],
+    "email": [
+        {"id" : 0, "email" : "pepe@gmail.com"},
+        {"id" : 1, "email" : "toño@yahoo.com"},
+        {"id" : 2, "email" : "rob@google.com"}
+
+    ],
+    "recientes": [
+        {"id" : 25, "email" : "rec@gmail.com"},
+        {"id" : 26, "email" : "rec@yahoo.com"},
+        {"id" : 27, "email" : "rec@google.com"}
+
+    ]
+
+  }
+
+
+
+
+
+  }
+
+
